@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -14,9 +15,12 @@ func init() {
 }
 
 func main() {
-	_, err := http.Get(os.Args[1])
+	h, err := http.Get(os.Args[1])
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
+
+	j, _ := json.Marshal(h)
+	fmt.Println(j)
 }
